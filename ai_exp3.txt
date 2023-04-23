@@ -1,0 +1,34 @@
+
+room = input("Enter current room: ")
+status = {
+           "A":"",
+           "B":""
+         }
+for i in status.keys():
+ status[i] = input(f"Is room {i} clean or dirty? ")
+cost = 0
+def moveRight():
+ global room
+ room = "B"
+ print(f"Moving right to {room}")
+def moveLeft():
+ global room
+ room = "A"
+ print(f"Moving left to {room}")
+def suck():
+ global status
+ status[room] = "clean"
+ print(f"Cleaning room {room}")
+while(1):
+ if status[room] == "dirty":
+   suck()
+   cost = cost+1
+ elif room == "A" and status["B"] == "dirty":
+   moveRight()
+   cost = cost+1
+ elif room == "B" and status["A"] == "dirty":
+   moveLeft()
+   cost = cost+1
+ else:
+   print(f"Both rooms are clean and the total cost is {cost}")
+   break
