@@ -1,0 +1,35 @@
+male(narayan).
+male(muddu).
+male(yadav).
+male(jagdish).
+female(jalaja).
+female(nalini).
+female(geeta).
+female(dayavati).
+female(yasshita).
+female(krutika).
+female(yashika).
+female(palak).
+parent(narayan,geeta).
+parent(narayan,yadav).
+parent(jalaja,yadav).
+parent(jalaja,geeta).
+parent(muddu,dayavati).
+parent(muddu,jagdish).
+parent(nalini,dayavati).
+parent(nalini,jagdish).
+parent(yadav,yasshita).
+parent(yadav,yashika).
+parent(dayavati,yasshita).
+parent(dayavati,yashika).
+parent(geeta,krutika).
+parent(jagdish,palak).
+father(X,Y) :- parent(X,Y),male(X).
+mother(X,Y) :- parent(X,Y),female(X).
+has_child(X) :- parent(_,X).
+grandFather(X,Y):- parent(Z,Y),parent(X,Z),male(X).
+grandMother(X,Y):- parent(Z,Y),parent(X,Z),female(X).
+brother(X,Y) :- parent(Z,X),parent(Z,Y),male(X),male(Y).
+sister(X,Y) :- parent(Z,X),parent(Z,Y),female(X).
+sibling(X,Y) :- parent(Z,X),parent(Z,Y),male(Z),X \= Y.
+cousin(X,Y) :- parent(Z,X),parent(K,Y),Z \= K,(X\=Y),(sibling(Z,K)).
